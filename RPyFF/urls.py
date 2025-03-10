@@ -24,20 +24,21 @@ urlpatterns = [
 from django.urls import include
 
 urlpatterns += [
-#    path('rpyff/', include('rpyff.urls')),
+    path('rpyff/', include('rpyff.urls')),
 ]
 
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
-#    path('', RedirectView.as_view(url='/rpyff/', permanent=True)),
+    path('', RedirectView.as_view(url='/rpyff/', permanent=True)),
 ]
 
-# Use static() to add url mapping to serve static files during development (only)
+# Solo para desarrollo
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 urlpatterns += [
    path('accounts/', include('django.contrib.auth.urls')),
