@@ -28,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 # LBPOG
-ALLOWED_HOSTS += ['192.168.{}.{}'.format(i,j) for i in range(256) for j in range (256)]
-#ALLOWED_HOSTS += ['192.168.1.{}'.format(i) for i in range(256)]
+#ALLOWED_HOSTS += ['192.168.{}.{}'.format(i,j) for i in range(256) for j in range (256)]
+ALLOWED_HOSTS += ['192.168.1.{}'.format(i) for i in range(256)]
 # LPOG
 
 # Application definition
@@ -82,6 +82,10 @@ WSGI_APPLICATION = 'RPyFF.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3.old',
+    },
+    'nueva': {
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -121,6 +125,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -130,25 +135,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# LBPOG
-SESSION_SAVE_EVERY_REQUEST =True
-
-LOGIN_REDIRECT_URL = '/'
-
-LOGIN_URL = '/'
-# LPOG
-# LBPOG
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-##EMAIL_HOST = 'smtp.googlemail.com'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-##EMAIL_PORT = 465
-#EMAIL_HOST_USER = 'lpdog142857@gmail.com'
-#EMAIL_HOST_PASSWORD = 'Mi7Maria'
-#EMAIL_USE_TLS = True
-##EMAIL_USE_SSL = False
-##EMAIL_USE_SSL = True
-
-# LPOG

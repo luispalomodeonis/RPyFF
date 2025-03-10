@@ -1,0 +1,65 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="col-sm-12">
+   <div class="titulo_pag">
+      <h3>Origen: <span class="origen"> {{ origen.nombre }} </span></h3>
+   </div>
+   <div id="contenido">
+   <section>
+      <article>
+      <table border="0" width="70%" align="center">
+        <tr><td colspan="3">Este origen contiene:</td>
+        {% with cnt=origen.palabra_set.all.count %}
+           {% if cnt != 0 %}
+              <tr><td width="40%" align="right"><h4>{{ cnt }}</h4></td>
+              <td>&nbsp;&nbsp;&nbsp</td>
+              <td width="40%" align="left">
+                 <a href="{% url 'palabras-origen' origen.id %}">
+                    <h4>{% if cnt == 1 %}Palabra{% else %}Palabras{% endif %}</h4>
+                 </a>
+              </td></tr>
+           {% endif %}
+        {% endwith %}
+        {% with cnt=origen.refran_set.all.count %}
+           {% if cnt != 0 %}
+              <tr><td width="40%" align="right"><h4>{{ cnt }}</h4></td>
+              <td>&nbsp;&nbsp;&nbsp</td>
+              <td width="40%" align="left">
+                 <a href="{% url 'refranes-origen' origen.id %}">
+                    <h4>{% if cnt == 1 %}Refrán{% else %}Refranes{% endif %}</h4>
+                 </a>
+              </td></tr>
+           {% endif %}
+        {% endwith %}
+        {% with cnt=origen.proverbio_set.all.count %}
+           {% if cnt != 0 %}
+              <tr><td width="40%" align="right"><h4>{{ cnt }}</h4></td>
+              <td>&nbsp;&nbsp;&nbsp</td>
+              <td width="40%" align="left">
+                 <a href="{% url 'proverbios-origen' origen.id %}">
+                    <h4>{% if cnt == 1 %}Proverbio{% else %}Proverbios{% endif %}</h4>
+                 </a>
+              </td></tr>
+           {% endif %}
+        {% endwith %}
+        {% with cnt=origen.frase_set.all.count %}
+           {% if cnt != 0 %}
+              <tr><td width="40%" align="right"><h4>{{ cnt }}</h4></td>
+              <td>&nbsp;&nbsp;&nbsp</td>
+              <td width="40%" align="left">
+                 <a href="{% url 'frases-origen' origen.id %}">
+                    <h4>{% if cnt == 1 %}Frase{% else %}Frases{% endif %}</h4>
+                 </a>
+              </td></tr>
+           {% endif %}
+        {% endwith %}
+     <tr><td colspan="3">-._.-._.-</td></tr>
+     </table>
+     </article>
+   </section>
+   </div>
+</div>
+{% endblock %}
+

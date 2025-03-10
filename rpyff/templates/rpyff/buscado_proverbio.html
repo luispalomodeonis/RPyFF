@@ -1,0 +1,42 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+
+{% load misfiltros %}
+
+<div class="col-sm-12">
+   <!-- div class="titulo_pag">
+      <h2>Lista de resultados</h2>
+   </div -->
+   <div id="contenido">
+   {% if object_list and mibusqueda_proverbio != 'None' %}
+      <div class="titulo_pag">
+         <h3>Resultado de proverbios con: "{{ mibusqueda_proverbio }}"</h3>
+      </div>
+   <section>
+      <article>
+      <table border="0" width="100%">
+         {% for proverbio in object_list %}
+         <tr>
+         <td align="center">
+            {% with cadena=mibusqueda_proverbio %}
+            <a class="proverbio" href="{{ proverbio.get_absolute_url }}">"{{ proverbio.dicho|resalta:cadena }}"</a>
+            {% endwith %}
+         </td></tr>
+         {% endfor %}
+         <tr><td>-._.-._.-</td></tr>
+      </table>
+      </article>
+   </section>
+   {% else %}
+      {% if mibusqueda_proverbio != 'None' %}
+         <div align="center">
+            <h3>No hay resultado en proverbios con: "{{ mibusqueda_proverbio }}"</h3>
+         </div>
+      {% endif %}
+   {% endif %}
+   <br><br><br>
+   </div-->
+   <!--/div>
+</div-->
+{% endblock %}

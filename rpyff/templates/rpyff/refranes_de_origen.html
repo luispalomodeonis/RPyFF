@@ -1,0 +1,31 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+      <div class="col-sm-12">
+         <div class="titulo_pag">
+            <h3>Lista de refranes de origen:</h3>
+            <h2>{{ origen }}</h2>
+         </div>
+         <div id="contenido">
+            <section>
+               <article>
+                  {% if refran_list %}
+                     <table border="0" width="100%">
+                        <tr>
+                           {% for refran in refran_list %}
+                           <td align="center" width="70%">
+                                 <a class="refran" href="{{ refran.get_absolute_url }}">"{{ refran.dicho }}"</a>
+                        </tr><!-- tr>
+                           <td align="center" width="80%">
+                                 <strong>{{ refran.explicacion }}</strong>
+                           </td></tr -->
+                           {% endfor %}
+                        <tr><td align="center">-._.-._.-</td></tr>
+                     </table>
+                  {% else %}
+                      <p>No hay refranes publicadas de este origen.</p>
+                  {% endif %}
+               </article>
+            </section>
+{% endblock %}
+
