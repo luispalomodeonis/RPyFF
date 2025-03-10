@@ -346,8 +346,8 @@ def index(request):
    fecha_dia = dt.day
    fecha='%s%s%s' % (fecha_ano,fecha_mes,fecha_dia)
    resto = 0
-   resto=str((int(fecha)*19)%int(num_refranes_aprobados+num_proverbios_aprobados+num_frases_aprobadas))
    if (num_refranes_aprobados !=0):
+      resto=str((int(fecha)*19)%int(num_refranes_aprobados+num_proverbios_aprobados+num_frases_aprobadas))
       num_aleatorio_r=random.randint(1, num_refranes_aprobados)
       refran_aleatorio=Refran.objects.filter(~Q(estado='r')).order_by('fecha').order_by('fechaaprobacion').order_by('fechapublicacion')[num_aleatorio_r-1]
       refran_aleatorio_id=refran_aleatorio.id
