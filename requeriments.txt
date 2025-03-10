@@ -1,0 +1,4 @@
+Django~=5.1.7
+django-social-share~=2.3.0
+django-bootstrap-form~=3.4
+
