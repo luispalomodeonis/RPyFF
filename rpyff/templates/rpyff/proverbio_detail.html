@@ -1,0 +1,51 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="col-sm-12">
+   <div class="titulo_pag">
+      <h4>Proverbio:</h4><h2 class="proverbio">"{{ proverbio.dicho }}"</h2>
+   </div>
+   <div align="center">
+      <h4>{{ proverbio.explicacion }}</h4>
+   </div>
+   <div id="contenido">
+      <section>
+         <article>
+       Palabra: <a class="palabra" href="{% url 'palabra-detalle' proverbio.palabra.pk %}"> {{ proverbio.palabra }}</a>
+      {% if proverbio.otraspalabras.all.count != 0 %}
+      - {{ proverbio.otraspalabras.all.count }}
+      {% if proverbio.otraspalabras.all.count == 1 %}
+       palabra relacionada:
+      {% else %}
+       palabras relacionadas:
+      {% endif %}
+       {% for palabra in proverbio.otraspalabras.all %}
+          &nbsp;<a href="{% url 'palabra-detalle' palabra.pk %}">{{ palabra }}</a>&nbsp;
+       {% endfor %}
+      {% endif %}
+      <br>
+       Origen: <a class="origen" href="{% url 'origen-detalle' proverbio.origen.pk %}"> {{ proverbio.origen }}</a>
+         </article>
+      </section>
+   </div>
+</div>
+{% endblock %}
+
+{% block edita %}
+   {% if perms.rpyff.change_proverbio or perms.rpyff.delete_proverbio %}
+      <div class="dropdown">
+      <button class="dropbtn">Edición</button>
+      <div class="dropdown-content">
+         {% if perms.rpyff.change_proverbio %}
+            <a href="{% url 'proverbio-actualiza' proverbio.id %}">Cambiar</a>
+         {% endif %}
+         {% if perms.rpyff.delete_proverbio %}
+            <a href="{% url 'proverbio-borra' proverbio.id %}">Borrar</a>
+         {% endif %}
+      </div>
+      </div>
+   {% endif %}
+{% endblock %}
+

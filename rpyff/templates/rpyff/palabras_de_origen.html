@@ -1,0 +1,31 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+      <div class="col-sm-12">
+         <div class="titulo_pag">
+            <h3>Lista de palabras de origen:</h3>
+            <h2>{{ origen }}</h2>
+         </div>
+         <div id="contenido">
+            <section>
+               <article>
+                  {% if palabra_list %}
+                     <table border="0" width="100%">
+                        <tr>
+                           {% for palabra in palabra_list %}
+                           <td align="right" width="20%">
+                                 <a class="palabra" href="{{ palabra.get_absolute_url }}">"{{ palabra.palabra }}"</a>
+                           <td>&nbsp;&nbsp;&nbsp;</td>
+                           <td align="left" width="75%">
+                                 <strong>{{ palabra.significado }}</strong>
+                           </td></tr>
+                           {% endfor %}
+                        <tr><td colspan="3" align="center">-._.-._.-</td></tr>
+                     </table>
+                  {% else %}
+                      <p>No hay palabras publicadas de este origen.</p>
+                  {% endif %}
+               </article>
+            </section>
+{% endblock %}
+

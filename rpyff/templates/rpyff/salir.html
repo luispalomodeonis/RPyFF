@@ -1,0 +1,37 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="col-sm-12">
+   <!-- div class="titulo_pag">
+      Bienvenido a Refranes y Proverbios
+   </div -->
+   <h3><center>Salida de usuario</center></h3>
+   <div id="contenido">
+      <section>
+         <article>
+            <div align="center">
+               {% if next %}
+                  {% if user.is_authenticated %}
+                     <p>Su cuenta no tiene acceso a esta página. Para continuar, inicie sesión con una cuenta que tenga acceso.</p>
+                  {% else %}
+                     <p>Por favor, inicie sesión para ver esta página.</p>
+                  {% endif %}
+               {% endif %}
+               <p>Confirme su deseo de salir de la aplicación</p>
+               <form method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit">Salir</button>
+               </form>
+               <p>O regrese al inicio de la aplicación</p>
+               <form method="post" action="{% url 'index' %}">
+                  {% csrf_token %}
+                  <button type="submit">Inicio</button>
+               </form>
+            </div>
+         </article>
+      </section>
+   </div>
+</div>
+{% endblock %}
+

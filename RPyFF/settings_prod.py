@@ -22,16 +22,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ub1hqv%6cvuyatb1^t&2xkw5i-j)bh0o(wsj4hwqw6@47%y(t='
-
+# LBPOG
+#SECRET_KEY = 'django-insecure-ub1hqv%6cvuyatb1^t&2xkw5i-j)bh0o(wsj4hwqw6@47%y(t='
+import os
+with open('/var/www/secret_key.txt') as f:
+   SECRET_KEY = f.read().strip()
+# LPOG
+#
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# LBPOG
+#DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False) )
+# LPOG
 
 # LBPOG
 ALLOWED_HOSTS = []
 ALLOWED_HOSTS += ['192.168.{}.{}'.format(i,j) for i in range(2) for j in range (256)]
 ALLOWED_HOSTS += ['127.0.0.1','.pythonanywhere.com']
 ALLOWED_HOSTS += ['rpyff.palomodeonis.net']
+ALLOWED_HOSTS += ['palomodeonis.net']
+ALLOWED_HOSTS += ['localhost']
 # LPOG
 
 

@@ -1,0 +1,62 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+
+<div class="col-sm-12">
+   <div class="titulo_pag">
+      <h2>Lista de orígenes</h2>
+   </div>
+   <div id="contenido">
+   <section>
+      <article>
+      {% if origen_list %}
+      <table border="0" width="100%">
+         {% for origen in origen_list %}
+            <tr><td>
+            <br>
+            <a class="origen" href="{{ origen.get_absolute_url }}">{{ origen.nombre }}</a>
+            <br>
+            {% with cnt=origen.palabra_set.count %}
+            {% if cnt != 0 %}
+            <a href="{% url 'palabras-origen' origen.id %}">
+               <strong>{{ cnt }}</strong> {% if cnt == 1 %} palabra {% else %} palabras {% endif %}
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% endwith %}
+            {% with cnt=origen.refran_set.count %}
+            {% if cnt != 0 %}
+            <a href="{% url 'refranes-origen' origen.id %}">
+               <strong>{{ cnt }}</strong> {% if cnt == 1 %} refrán {% else %} refranes {% endif %}
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% endwith %}
+            {% with cnt=origen.proverbio_set.count %}
+            {% if cnt != 0 %}
+            <a href="{% url 'proverbios-origen' origen.id %}">
+               <strong>{{ cnt }}</strong> {% if cnt == 1 %} proverbio {% else %} proverbios {% endif %}
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% endwith %}
+            {% with cnt=origen.frase_set.count %}
+            {% if cnt != 0 %}
+            <a href="{% url 'frases-origen' origen.id %}">
+               <strong>{{ cnt }}</strong> {% if cnt == 1 %} frase {% else %} frases {% endif %}
+            </a>
+            {% endif %}
+            {% endwith %}
+            </td></tr>
+         {% endfor %}
+      </table>
+      {% else %}
+          <p>No hay orígenes en el archivo.</p>
+      {% endif %}
+      </article>
+   </section>
+   </div>
+</div>
+{% endblock %}
+
+

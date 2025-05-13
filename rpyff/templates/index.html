@@ -1,0 +1,110 @@
+
+{% extends "base_generic.html" %}
+{% load misfiltros %}
+{% block content %}
+      <div class="col-sm-12">
+         <div class="titulo_pag">
+            <!-- Bienvenido Forastero a Refranes, Proverbios y Frases Familiares y Famosas -->
+            Bienvenid@ Foraster@
+         </div>
+         <div id="contenido">
+            <section>
+               <article id="refranes">
+                  <h5><strong>Refranes: {{ num_refranes }}</strong></h5>
+                  Revisión: {{ num_refranes_revision }}
+                  <br>Aprobados: {{ num_refranes_aprobados}}
+                  <!-- br>Publicados: {{ num_refranes_publicados }} -->
+               </article>
+               <article id="proverbios">
+                  <h5><strong>Proverbios: {{ num_proverbios }}</strong></h5>
+                  Revisión: {{ num_proverbios_revision }}
+                  <br>Aprobados: {{ num_proverbios_aprobados }}
+                  <!-- br>Publicados: {{ num_proverbios_publicados }} -->
+               </article>
+               <article id="frases">
+                  <h5><strong>Frases: {{ num_frases }}</strong></h5>
+                  Revisión: {{ num_frases_revision }}
+                  <br>Aprobados: {{ num_frases_aprobadas }}
+                  <!-- br>Publicados: {{ num_frases_publicadas }} -->
+               </article>
+               <!-- <article id="creados">
+                  <h5><strong>Creados</strong></h5>
+                  Letras: {{ num_letras }}
+                  <br>Orígenes: {{ num_origenes }}
+                  <br>Palabras: {{ num_palabras }}
+                  <br>Refranes: {{ num_refranes }}
+               </article>
+               -->
+               <br>&nbsp;
+               <article id="aldia">
+               <table border="0" width="100%">
+               <tr><td colspan="3">
+                 {% if cita_deldia != "" %}
+                 <h4><strong>Cita de hoy {{fecha}}</strong></h4>
+                    {% if cita_deldia.tipo == 'r' %}
+                    <div class="refran">
+                    Refrán: "<strong><a href="refranes/{{cita_deldia.id }}">{{ cita_deldia.dicho|resalta:cita_deldia.palabra.palabra }}</a></strong>"
+                    </div>
+                    {% endif %}
+                    {% if cita_deldia.tipo == 'p' %}
+                    <div class="proverbio">
+                    Proverbio: "<strong><a href="proverbios/{{cita_deldia.id }}">{{ cita_deldia.dicho|resalta:cita_deldia.palabra.palabra }}</a></strong>"
+                    </div>
+                    {% endif %}
+                    {% if cita_deldia.tipo == 'f' %}
+                    <div class="frase">
+                    Frase: "<strong><a href="frases/{{cita_deldia.id }}">{{ cita_deldia.dicho|resalta:cita_deldia.palabra.palabra }}</a></strong>"
+                    </div>
+                    {% endif %}
+                 {% endif %}
+               </td></tr>
+               </table>
+               </article>
+               <article id="alzas">
+               <table border="0" width="100%">
+               <tr><td width="20%">
+                  <div title="Los que dan consejos ciertos a los vivos son los muertos">
+                  <img width="100%" alt="Los que dan consejos ciertos a los vivos son los muertos" src="/static/images/consejos.jpg"/>
+                  </div>
+                  </td>
+                  <td width="60%">
+                  {% if refran_aleatorio != "" %}
+                  <div align="left">&nbsp;&nbsp;Refrán <strong><a href="refranes/{{refran_aleatorio}}">{{ refran_numero|activa_primo }}</a></strong> al ZaS:</div>
+                  {% with cadena=refran_palabra|concatena:" "|concatena:refran_palabra_id %}
+                  <h5><div class="refran"><strong>"{{ refran_dicho|resaltayenlaza:cadena|safe }}</strong>"</div></h5>
+                  {% endwith %}
+                  <!-- div>{{ refran_explicacion }}</div -->
+                  {% endif %}
+                  {% if proverbio_aleatorio != "" %}
+                  <div align="left">&nbsp;&nbsp;Proverbio <strong><a href="proverbios/{{proverbio_aleatorio}}">{{ proverbio_numero|activa_primo }}</a></strong> al ZaS:</div>
+                  {% with cadena=proverbio_palabra|concatena:" "|concatena:proverbio_palabra_id %}
+                  <h5><div class="proverbio"><strong>"{{ proverbio_dicho|resaltayenlaza:cadena|safe }}</strong>"</div></h5>
+                  {% endwith %}
+                  <!-- div>{{ proverbio_explicacion }}</div -->
+                  {% endif %}
+                  {% if frase_aleatorio != "" %}
+                  <div align="left">&nbsp;&nbsp;Frase <strong><a href="frases/{{frase_aleatorio}}">{{ frase_numero|activa_primo }}</a></strong> al ZaS:</div>
+                  {% with cadena=frase_palabra|concatena:" "|concatena:frase_palabra_id %}
+                  <h5><div class="frase"><strong>"{{ frase_dicho|resaltayenlaza:cadena|safe }}</strong>"</div></h5>
+                  {% endwith %}
+                  <!-- div>{{ frase_explicacion }}</div -->
+                  {% endif %}
+                  </td>
+               <td width="20%">
+               <div title="Tururú, tururú, nos dicen desde el Cielo">
+                  <img width="100%" alt="Tururú, tururú, nos dicen desde el Cielo" src="/static/images/tururu.jpg"/>
+               </div></td></tr>
+               </table>
+               </article>
+            </section>
+            <section>
+               <article id="pie">
+<!--
+                  <strong>4&ByM3R</strong>
+-->
+               </article>
+            </section>
+         </div>
+      </div>
+{% endblock %}
+

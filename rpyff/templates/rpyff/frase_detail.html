@@ -1,0 +1,51 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="col-sm-12">
+   <div class="titulo_pag">
+      <h4>Frase:</h4><h2 class="frase">"{{ frase.dicho }}"</h2>
+   </div>
+   <div align="center">
+      <h4>{{ frase.explicacion }}</h4>
+   </div>
+   <div id="contenido">
+      <section>
+         <article>
+       Palabra: <a class="palabra" href="{% url 'palabra-detalle' frase.palabra.pk %}"> {{ frase.palabra }}</a>
+      {% if frase.otraspalabras.all.count != 0 %}
+      - {{ frase.otraspalabras.all.count }}
+      {% if frase.otraspalabras.all.count == 1 %}
+       palabra relacionada:
+      {% else %}
+       palabras relacionadas:
+      {% endif %}
+       {% for palabra in frase.otraspalabras.all %}
+          &nbsp;<a href="{% url 'palabra-detalle' palabra.pk %}">{{ palabra }}</a>&nbsp;
+       {% endfor %}
+      {% endif %}
+       <br>
+       Origen: <a class="origen" href="{% url 'origen-detalle' frase.origen.pk %}"> {{ frase.origen }}</a>
+         </article>
+      </section>
+   </div>
+</div>
+{% endblock %}
+
+{% block edita %}
+   {% if perms.frases.change_frase or perms.frases.delete_frase %}
+      <div class="dropdown">
+      <button class="dropbtn">Edición</button>
+      <div class="dropdown-content">
+         {% if perms.frases.change_frase %}
+            <a href="{% url 'frase-actualiza' frase.id %}">Cambiar</a>
+         {% endif %}
+         {% if perms.frases.delete_frase %}
+            <a href="{% url 'frase-borra' frase.id %}">Borrar</a>
+         {% endif %}
+      </div>
+      </div>
+   {% endif %}
+{% endblock %}
+
